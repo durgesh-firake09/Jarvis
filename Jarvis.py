@@ -38,7 +38,7 @@ def wish_me_initiating():
 
 def wish_me_ending():
     print("\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
-    speak("Going Offline... Thanks for using me!! Have a nice day sir See you soon...")
+    speak("Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
 
 
 def take_command():
