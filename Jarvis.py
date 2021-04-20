@@ -1,9 +1,11 @@
 import pyttsx3
+from requests.models import Response
 import speech_recognition as sr
 import datetime
 import wikipedia
 import webbrowser
 import os
+from alexa_reply import reply
 import smtplib
 import time
 import random
@@ -18,7 +20,7 @@ def speak(audio):
     engine.runAndWait()
 
 
-def wish_me_initiating():
+def wish_me():
     hour = int(datetime.datetime.now().hour)
     if 0 <= hour < 12:
         print("Good Morning!")
@@ -35,10 +37,6 @@ def wish_me_initiating():
     print("This is JARVIS. Ready to help you, Sir !!")
     speak("This is jarvis Ready to help you Sir !!")
 
-
-def wish_me_ending():
-    print("\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
-    speak("Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
 
 
 def take_command():
@@ -68,9 +66,12 @@ def send_email(to, content):
     server.login('your-email@something.com', password='your-password')
     server.sendmail('your-email@something.com', to, content)
 
+def reply_to_user(msg):
+    resp = reply(msg,"jarvis","Durgesh")
+    return resp
 
 if __name__ == '__main__':
-    wish_me_initiating()
+    wish_me()
     chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
     firefox_path = 'C:/Program Files (x86)/Mozilla Firefox/firefox.exe %s'
     while True:
@@ -280,11 +281,34 @@ if __name__ == '__main__':
             os.startfile(
                 "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe")
 
+        elif 'chat with me' in query:
+            speak("Chatbot mode is on")
+            while True:
+                msg = take_command().lower()
+                if 'stop chatting' in msg:
+                    print("Turning off Chatbot mode")
+                    speak("Turning off Chatbot mode")
+                    break
+
+                elif 'go offline' in msg:
+                    print("\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
+                    speak("Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
+                    exit()
+
+                elif msg == 'none':
+                    continue
+
+                else:
+                    jarvis_reply = reply_to_user(msg)
+                    print(jarvis_reply)
+                    speak(jarvis_reply)
+
         elif 'none' in query:
             continue
 
         elif 'go offline' in query:
-            wish_me_ending()
+            print("\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
+            speak("Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
             exit()
 
         else:
