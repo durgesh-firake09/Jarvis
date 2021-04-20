@@ -38,7 +38,6 @@ def wish_me():
     speak("This is jarvis Ready to help you Sir !!")
 
 
-
 def take_command():
     # Microphone Input and string output
     rec = sr.Recognizer()
@@ -66,9 +65,11 @@ def send_email(to, content):
     server.login('your-email@something.com', password='your-password')
     server.sendmail('your-email@something.com', to, content)
 
+
 def reply_to_user(msg):
-    resp = reply(msg,"jarvis","Durgesh")
+    resp = reply(msg, "jarvis", "Durgesh")
     return resp
+
 
 if __name__ == '__main__':
     wish_me()
@@ -77,41 +78,9 @@ if __name__ == '__main__':
     while True:
         query = take_command().lower()
 
-        # Logic for executing tasks
-
-        # Formalities with JARVIS
-
-        if ('hi jarvis' in query) or ('hello jarvis' in query):
-            if 'hello jarvis' in query:
-                speak("Hello Sir. I am Here to help you...")
-
-            elif 'hi jarvis' in query:
-                speak("Hii Sir. I am Here to help you...")
-
-            continue
-
-        elif 'how are you' in query:
-            speak("I am always fine. How about you Sir?")
-            condition = take_command().lower()
-            if 'fine' in condition:
-                speak("Ohh! That's nice")
-            else:
-                speak("OK!!")
-
-            speak("Then how can I help you sir?")
-            continue
-
-        elif 'who are you' in query:
-            speak("I am jarvis. Your Personal Assistant. I am always ready to help you.")
-            continue
-
-        elif 'what is your name' in query:
-            speak("My name is jarvis. How can I help you sir?")
-            continue
-
         # COMMANDS FOR JARVIS START HERE
 
-        elif 'wikipedia' in query:
+        if 'wikipedia' in query:
             speak("Searching Wikipedia...")
             query = query.replace("wikipedia", "")
             try:
@@ -264,11 +233,11 @@ if __name__ == '__main__':
         elif 'search on youtube' in query:
             speak("What should I search in youtube?")
             yt_search = take_command().lower()
-            input_yt_search = yt_search.replace(" ", "+")
+            yt_search = yt_search.replace(" ", "+")
             print("Searching on YouTube...")
-            speak(f"searching {yt_search}")
+            speak("Searching on YouTube")
             webbrowser.get(chrome_path).open_new_tab(
-                f"https://www.youtube.com/results?search_query={input_yt_search}")
+                f"https://www.youtube.com/results?search_query={yt_search}")
 
         elif ('open command prompt' in query) or ('open cmd' in query):
             print("Opening Command Prompt...")
@@ -291,8 +260,10 @@ if __name__ == '__main__':
                     break
 
                 elif 'go offline' in msg:
-                    print("\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
-                    speak("Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
+                    print(
+                        "\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
+                    speak(
+                        "Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
                     exit()
 
                 elif msg == 'none':
@@ -307,8 +278,10 @@ if __name__ == '__main__':
             continue
 
         elif 'go offline' in query:
-            print("\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
-            speak("Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
+            print(
+                "\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
+            speak(
+                "Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
             exit()
 
         else:
