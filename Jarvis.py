@@ -1,14 +1,6 @@
-import pyttsx3
-from requests.models import Response
+import pyttsx3, wikipedia, os, time, random, smtplib,datetime, webbrowser
 import speech_recognition as sr
-import datetime
-import wikipedia
-import webbrowser
-import os
 from alexa_reply import reply
-import smtplib
-import time
-import random
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -67,7 +59,7 @@ def send_email(to, content):
 
 
 def reply_to_user(msg):
-    resp = reply(msg, "jarvis", "Durgesh")
+    resp = reply(msg, "Jarvis", "Durgesh")
     return resp
 
 
