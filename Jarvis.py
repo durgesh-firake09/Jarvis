@@ -241,31 +241,7 @@ if __name__ == '__main__':
             speak("Opening PowerShell...")
             os.startfile(
                 "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe")
-
-        elif 'chat with me' in query:
-            speak("Chatbot mode is on")
-            while True:
-                msg = take_command().lower()
-                if 'stop chatting' in msg:
-                    print("Turning off Chatbot mode")
-                    speak("Turning off Chatbot mode")
-                    break
-
-                elif 'go offline' in msg:
-                    print(
-                        "\nGoing Offline...\nThanks for using me!!\nHave a Nice Day, Sir\nSee you soon...")
-                    speak(
-                        "Going Offline... Thanks for using me!! Have a nice day sir. See you soon...")
-                    exit()
-
-                elif msg == 'none':
-                    continue
-
-                else:
-                    jarvis_reply = reply_to_user(msg)
-                    print(jarvis_reply)
-                    speak(jarvis_reply)
-
+                
         elif 'none' in query:
             continue
 
@@ -277,8 +253,9 @@ if __name__ == '__main__':
             exit()
 
         else:
-            print("Sorry!! I don't Understand")
-            speak("Sorry!! I don't Understand")
+            jarvis_reply = reply_to_user(query)
+            print(jarvis_reply)
+            speak(jarvis_reply)
             continue
 
         print("\nNext Order Please...")
